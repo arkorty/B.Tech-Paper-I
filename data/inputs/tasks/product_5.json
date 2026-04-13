@@ -1,0 +1,56 @@
+{
+    "task": "Negotiate a purchase agreement for Chevrolet Silverado (Vehicle). The only negotiated term is unit_price_usd. Catalog retail is $37000.00 and wholesale is $29040.00. Product features: Full-size pickup with multi-flex tailgate and available 2.7L turbo engine. Reference: https://www.chevrolet.com/trucks/silverado/1500",
+    "agent_a": {
+        "agent_id": "Supplier_Agent",
+        "system_goal": "You are the supplier for Chevrolet Silverado. Maximize unit_price_usd while preserving margin over wholesale cost and closing a deal quickly.",
+        "max_rounds": 4,
+        "draft_models": [
+            "gemini-3.1-flash-lite-preview",
+            "gemma-3-27b-it"
+        ],
+        "repair_models": [
+            "gemini-3-flash-preview",
+            "gemma-4-31b-it"
+        ],
+        "final_models": [
+            "gemma-4-31b-it"
+        ],
+        "parallel_drafts": false,
+        "hard_constraints": {
+            "unit_price_usd": [
+                29040.0,
+                null
+            ]
+        },
+        "target_goals": {
+            "unit_price_usd": 35408.0
+        }
+    },
+    "agent_b": {
+        "agent_id": "Buyer_Agent",
+        "system_goal": "You are buying Chevrolet Silverado. Minimize unit_price_usd while staying within budget and trying to close at a realistic market price.",
+        "max_rounds": 4,
+        "draft_models": [
+            "gemini-3.1-flash-lite-preview",
+            "gemma-3-27b-it"
+        ],
+        "repair_models": [
+            "gemini-3-flash-preview",
+            "gemma-4-31b-it"
+        ],
+        "final_models": [
+            "gemma-4-31b-it"
+        ],
+        "parallel_drafts": false,
+        "hard_constraints": {
+            "unit_price_usd": [
+                0.0,
+                37000.0
+            ]
+        },
+        "target_goals": {
+            "unit_price_usd": 31030.0
+        }
+    },
+    "max_retries_per_turn": 2
+}

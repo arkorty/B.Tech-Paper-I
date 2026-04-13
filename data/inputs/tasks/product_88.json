@@ -1,0 +1,56 @@
+{
+    "task": "Negotiate a purchase agreement for Rural Farm in Vermont (Real Estate). The only negotiated term is unit_price_usd. Catalog retail is $1250000.00 and wholesale is $1000000.00. Product features: 50-acre organic farm with 4-bedroom farmhouse and multiple barns. Reference: https://www.landvest.com/",
+    "agent_a": {
+        "agent_id": "Supplier_Agent",
+        "system_goal": "You are the supplier for Rural Farm in Vermont. Maximize unit_price_usd while preserving margin over wholesale cost and closing a deal quickly.",
+        "max_rounds": 4,
+        "draft_models": [
+            "gemini-3.1-flash-lite-preview",
+            "gemma-3-27b-it"
+        ],
+        "repair_models": [
+            "gemini-3-flash-preview",
+            "gemma-4-31b-it"
+        ],
+        "final_models": [
+            "gemma-4-31b-it"
+        ],
+        "parallel_drafts": false,
+        "hard_constraints": {
+            "unit_price_usd": [
+                1000000.0,
+                null
+            ]
+        },
+        "target_goals": {
+            "unit_price_usd": 1200000.0
+        }
+    },
+    "agent_b": {
+        "agent_id": "Buyer_Agent",
+        "system_goal": "You are buying Rural Farm in Vermont. Minimize unit_price_usd while staying within budget and trying to close at a realistic market price.",
+        "max_rounds": 4,
+        "draft_models": [
+            "gemini-3.1-flash-lite-preview",
+            "gemma-3-27b-it"
+        ],
+        "repair_models": [
+            "gemini-3-flash-preview",
+            "gemma-4-31b-it"
+        ],
+        "final_models": [
+            "gemma-4-31b-it"
+        ],
+        "parallel_drafts": false,
+        "hard_constraints": {
+            "unit_price_usd": [
+                0.0,
+                1250000.0
+            ]
+        },
+        "target_goals": {
+            "unit_price_usd": 1062500.0
+        }
+    },
+    "max_retries_per_turn": 2
+}

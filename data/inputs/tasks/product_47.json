@@ -1,0 +1,56 @@
+{
+    "task": "Negotiate a purchase agreement for Apple MacBook Pro 16\" (Electronics). The only negotiated term is unit_price_usd. Catalog retail is $2499.00 and wholesale is $1749.00. Product features: Laptop with M4 Pro/Max chip and Liquid Retina XDR display. Reference: https://www.apple.com/macbook-pro/",
+    "agent_a": {
+        "agent_id": "Supplier_Agent",
+        "system_goal": "You are the supplier for Apple MacBook Pro 16\". Maximize unit_price_usd while preserving margin over wholesale cost and closing a deal quickly.",
+        "max_rounds": 4,
+        "draft_models": [
+            "gemini-3.1-flash-lite-preview",
+            "gemma-3-27b-it"
+        ],
+        "repair_models": [
+            "gemini-3-flash-preview",
+            "gemma-4-31b-it"
+        ],
+        "final_models": [
+            "gemma-4-31b-it"
+        ],
+        "parallel_drafts": false,
+        "hard_constraints": {
+            "unit_price_usd": [
+                1749.0,
+                null
+            ]
+        },
+        "target_goals": {
+            "unit_price_usd": 2349.0
+        }
+    },
+    "agent_b": {
+        "agent_id": "Buyer_Agent",
+        "system_goal": "You are buying Apple MacBook Pro 16\". Minimize unit_price_usd while staying within budget and trying to close at a realistic market price.",
+        "max_rounds": 4,
+        "draft_models": [
+            "gemini-3.1-flash-lite-preview",
+            "gemma-3-27b-it"
+        ],
+        "repair_models": [
+            "gemini-3-flash-preview",
+            "gemma-4-31b-it"
+        ],
+        "final_models": [
+            "gemma-4-31b-it"
+        ],
+        "parallel_drafts": false,
+        "hard_constraints": {
+            "unit_price_usd": [
+                0.0,
+                2499.0
+            ]
+        },
+        "target_goals": {
+            "unit_price_usd": 1936.5
+        }
+    },
+    "max_retries_per_turn": 2
+}
